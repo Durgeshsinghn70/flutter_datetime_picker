@@ -310,9 +310,9 @@ class _DatePickerState extends State<_DatePickerComponent> {
               ),
               child: GestureDetector(
                 child: Material(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20)),
+                  // borderRadius: BorderRadius.only(
+                  //     topLeft: Radius.circular(20),
+                  //     topRight: Radius.circular(20)),
                   color: Colors.white,
                   child: _renderPickerView(theme),
                 ),
@@ -416,20 +416,21 @@ class _DatePickerState extends State<_DatePickerComponent> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              child: widget.pickerModel.layoutProportions()[0] > 0
+              child: widget.pickerModel.layoutProportions()[2] > 0
                   ? _renderColumnView(
-                      ValueKey(widget.pickerModel.currentLeftIndex()),
-                      theme,
-                      widget.pickerModel.leftStringAtIndex,
-                      leftScrollCtrl,
-                      widget.pickerModel.layoutProportions()[0], (index) {
-                      widget.pickerModel.setLeftIndex(index);
-                    }, (index) {
-                      setState(() {
-                        refreshScrollOffset();
-                        _notifyDateChanged();
-                      });
-                    })
+                  ValueKey(widget.pickerModel.currentMiddleIndex() * 100 +
+                      widget.pickerModel.currentLeftIndex()),
+                  theme,
+                  widget.pickerModel.rightStringAtIndex,
+                  rightScrollCtrl,
+                  widget.pickerModel.layoutProportions()[2], (index) {
+                widget.pickerModel.setRightIndex(index);
+              }, (index) {
+                setState(() {
+                  refreshScrollOffset();
+                  _notifyDateChanged();
+                });
+              })
                   : null,
             ),
             Text(
@@ -458,21 +459,20 @@ class _DatePickerState extends State<_DatePickerComponent> {
               style: theme.itemStyle,
             ),
             Container(
-              child: widget.pickerModel.layoutProportions()[2] > 0
+              child: widget.pickerModel.layoutProportions()[0] > 0
                   ? _renderColumnView(
-                      ValueKey(widget.pickerModel.currentMiddleIndex() * 100 +
-                          widget.pickerModel.currentLeftIndex()),
-                      theme,
-                      widget.pickerModel.rightStringAtIndex,
-                      rightScrollCtrl,
-                      widget.pickerModel.layoutProportions()[2], (index) {
-                      widget.pickerModel.setRightIndex(index);
-                    }, (index) {
-                      setState(() {
-                        refreshScrollOffset();
-                        _notifyDateChanged();
-                      });
-                    })
+                  ValueKey(widget.pickerModel.currentLeftIndex()),
+                  theme,
+                  widget.pickerModel.leftStringAtIndex,
+                  leftScrollCtrl,
+                  widget.pickerModel.layoutProportions()[0], (index) {
+                widget.pickerModel.setLeftIndex(index);
+              }, (index) {
+                setState(() {
+                  refreshScrollOffset();
+                  _notifyDateChanged();
+                });
+              })
                   : null,
             ),
           ],
@@ -490,8 +490,8 @@ class _DatePickerState extends State<_DatePickerComponent> {
       height: theme.titleHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        color: Colors.white,
+            topRight: Radius.circular(0), topLeft: Radius.circular(0)),
+        color: Colors.black,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -507,7 +507,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Color(0xff8F9BB3)),
+                    color: Color(0xff707070)),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -523,16 +523,16 @@ class _DatePickerState extends State<_DatePickerComponent> {
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
             height: 24,
             width: 75,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    color: Color.fromRGBO(44, 51, 73, 0.16),
-                    blurRadius: 8,
-                    spreadRadius: 0)
-              ],
-              borderRadius: BorderRadius.circular(05),
-            ),
+            // decoration: BoxDecoration(
+            //   color: Colors.white,
+            //   boxShadow: [
+            //     BoxShadow(
+            //         color: Color.fromRGBO(44, 51, 73, 0.16),
+            //         blurRadius: 8,
+            //         spreadRadius: 0)
+            //   ],
+            //   borderRadius: BorderRadius.circular(05),
+            // ),
             child: CupertinoButton(
               pressedOpacity: 0.3,
               padding: EdgeInsetsDirectional.only(end: 0, top: 0),
