@@ -24,6 +24,7 @@ class DatePicker {
   static Future<DateTime?> showDatePicker(
     BuildContext context, {
     bool showTitleActions: true,
+    bool isOptional: true,
     DateTime? minTime,
     DateTime? maxTime,
     DateChangedCallback? onChanged,
@@ -49,6 +50,7 @@ class DatePicker {
           maxTime: maxTime,
           minTime: minTime,
           locale: locale,
+          isOptional: isOptional,
         ),
       ),
     );
@@ -540,7 +542,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Color(0xff3366FF))),
+                      color: Colors.white)),
               onPressed: () {
                 if (widget.route.onConfirm != null) {
                   int value = widget.pickerModel.middleStringAtIndex(

@@ -130,15 +130,18 @@ class CommonPickerModel extends BasePickerModel {
 class DatePickerModel extends CommonPickerModel {
   late DateTime maxTime;
   late DateTime minTime;
+  late bool isOptional;
 
   DatePickerModel(
       {DateTime? currentTime,
       DateTime? maxTime,
       DateTime? minTime,
-      LocaleType? locale})
+      LocaleType? locale,
+      bool? isOptional})
       : super(locale: locale) {
     this.maxTime = maxTime ?? DateTime(2049, 12, 31);
     this.minTime = minTime ?? DateTime(1970, 1, 1);
+    this.isOptional = isOptional ?? true;
 
     currentTime = currentTime ?? DateTime.now();
 
@@ -197,7 +200,9 @@ class DatePickerModel extends CommonPickerModel {
     this.middleList = List.generate(maxMonth - minMonth + 1, (int index) {
       return '${_localeMonth(minMonth + index)}';
     });
-    this.middleList.add("Optional");
+    if(isOptional){
+      this.middleList.add("Optional");
+    }
   }
 
   void _fillRightLists() {
@@ -206,7 +211,9 @@ class DatePickerModel extends CommonPickerModel {
     this.rightList = List.generate(maxDay - minDay + 1, (int index) {
       return '${minDay + index}${_localeDay()}';
     });
-    this.rightList.add("Optional");
+    if(isOptional){
+      this.rightList.add("Optional");
+    }
   }
 
   @override
