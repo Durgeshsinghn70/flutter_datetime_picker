@@ -509,7 +509,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Color(0xff707070)),
+                    color: Color(0xff484949)),
               ),
               onPressed: () {
                 Navigator.pop(context);
