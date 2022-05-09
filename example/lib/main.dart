@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
                       currentTime: DateTime.now());
                 },
                 child: Text(
-                  'show time picker',
+                  "Show date picker",
                   style: TextStyle(color: Colors.blue),
                 )),
           ],

@@ -12,10 +12,14 @@ export 'package:flutter_datetime_picker_optional/src/datetime_picker_theme.dart'
 export 'package:flutter_datetime_picker_optional/src/date_model.dart';
 export 'package:flutter_datetime_picker_optional/src/i18n_model.dart';
 
+
+DateTime? temp;
 typedef DateChangedCallback(
-    DateTime time, bool dayOptional, bool monthOptional);
+    temp, bool dayOptional, bool monthOptional);
 typedef DateCancelledCallback();
 typedef String? StringAtIndexCallBack(int index);
+
+
 
 class DatePicker {
   ///
@@ -508,8 +512,9 @@ class _DatePickerState extends State<_DatePickerComponent> {
                 '$cancel',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Color(0xff484949)),
+                    fontSize: 16,
+                    fontFamily: 'NimbusBold',
+                    color:  const Color(0Xfff0f2f2).withOpacity(0.3),),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -540,9 +545,10 @@ class _DatePickerState extends State<_DatePickerComponent> {
               padding: EdgeInsetsDirectional.only(end: 0, top: 0),
               child: Text('$done',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                     fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Colors.white)),
+                      fontFamily: 'NimbusBold',
+                      color:const Color(0Xfff0f2f2))),
               onPressed: () {
                 if (widget.route.onConfirm != null) {
                   int value = widget.pickerModel.middleStringAtIndex(
@@ -559,7 +565,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
                               widget.pickerModel.currentRightIndex()) ==
                       "Optional";
                   DateTime? time = widget.pickerModel.finalTime();
-                  DateTime temp = new DateTime(
+                   temp = new DateTime(
                       int.parse(
                           "${widget.pickerModel.leftStringAtIndex(widget.pickerModel.currentLeftIndex())}"),
                       monthOptionalStatus ? 1 : value,
@@ -569,10 +575,11 @@ class _DatePickerState extends State<_DatePickerComponent> {
                       time.second,
                       time.millisecond,
                       time.microsecond);
+                      print("meghaaaaaaa");
                   print(temp);
                   Navigator.pop(context, temp);
                   widget.route.onConfirm!(
-                      temp, dayOptionalStatus, monthOptionalStatus);
+                      temp!, dayOptionalStatus, monthOptionalStatus);
                 }
               },
             ),

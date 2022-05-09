@@ -19,6 +19,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+    - family: NimbusBold
+      fonts:
+        - asset: fonts/Nimbus-Sans-D-OT-Bold-Extended_32745.ttf
+
 
   # To add assets to your package, add an assets section, like this:
   # assets:
